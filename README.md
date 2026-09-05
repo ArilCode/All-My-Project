@@ -9,7 +9,7 @@ All My Project
 
 Website portfolio yang auto sync dengan GitHub API. Menampilkan semua project yang saya deploy di Vercel secara real-time.
 
-[Live Demo](https://all-my-project-theta.vercel.app/) · [Report Bug](https://github.com/arilcode/REPO/issues) · [Request Feature](https://github.com/arilcode/REPO/issues)
+[Live Demo](https://all-my-project-theta.vercel.app/) · [Report Bug](https://github.com/ArilCode/All-My-Project/issues) · [Request Feature](https://github.com/ArilCode/All-My-Project/issues)
 
 ---
 
@@ -39,7 +39,7 @@ Karena ini pure HTML, tidak perlu install.
 
 
 1. Clone repo
-git clone https://github.com/arilcode/REPO.git
+git clone https://github.com/arilcode/All-My-Project.git
 
 2. Buka dengan Live Server
 Klik kanan index.html > Open with Live Server
@@ -47,7 +47,7 @@ Klik kanan index.html > Open with Live Server
 👨‍💻 Author
 
 *Arill*
-- GitHub: https://github.com/arilcode
+- GitHub: https://github.com/ArilCode
 - Website: https://all-my-project-theta.vercel.app/
 
 ---

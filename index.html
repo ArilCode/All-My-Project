@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <!--
+
+    META & HEAD SECTION
+    Defines character set, viewport, fonts, and styles
+
+  -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Portfolio of ARill - Collection of Vercel projects synced from GitHub" />
+  <!-- 
+
+  FAVICON & SOCIAL META TAGS
+  For browser tab icon and social media link previews
+
+-->
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="./Images/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="./Images/favicon.svg" />
+<link rel="shortcut icon" href="./Images/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="./Images/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="MyWebSite" />
+<link rel="manifest" href="./Images/site.webmanifest" />
+
+<!-- Primary Meta Tags -->
+<meta name="title" content="Projects | ARill">
+<meta name="description" content="Collection of projects deployed on Vercel. Auto synced from GitHub">
+
+<!-- Open Graph / Facebook / LinkedIn -->
+<!-- Open Graph / Facebook / LinkedIn -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://arill-portfolio.vercel.app/">
+<meta property="og:title" content="Projects | ARill">
+<meta property="og:description" content="Collection of projects deployed on Vercel. Auto synced from GitHub.">
+<meta property="og:image" content="https://arill-portfolio.vercel.app/og-image.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://arill-portfolio.vercel.app/">
+<meta property="twitter:title" content="Projects | ARill">
+<meta property="twitter:description" content="Collection of projects deployed on Vercel. Auto synced from GitHub.">
+<meta property="twitter:image" content="https://arill-portfolio.vercel.app/og-image.png">
+
+  <!-- Google Fonts: Inter - Used for clean, modern typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <title>Projects | Arill</title>
+</head>
+<body>
+
+  <!--
+
+    NAVIGATION BAR
+    Displays the site branding/logo
+
+  -->
+  <div class="nav">
+    <div class="container">
+      <h1>Arill.dev</h1>
+    </div>
+  </div>
+
+  <!--
+
+    MAIN CONTENT CONTAINER
+    Holds all page content including header and project grid
+
+  -->
+  <div class="container">
+
+    <!-- PAGE HEADER SECTION -->
+    <div class="header">
+      <h2>All My Projects</h2>
+      <p>Kumpulan project yang saya buat</p>
+    </div>
+
+    <!-- LOADING STATE: Shown while fetching data from GitHub API -->
+    <div id="loader" class="loader">Memuat project...</div>
+
+    <!-- EMPTY STATE: Shown when no Vercel projects are found -->
+    <div id="empty" class="empty" style="display:none;">Belum ada repo dengan link Vercel</div>
+
+    <!-- PROJECT GRID: Dynamically populated by main.js -->
+    <div id="grid" class="grid"></div>
+  </div>
+
+  <!--
+
+    FOOTER SECTION
+    Displays copyright with dynamic year
+
+  -->
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Arill. all rights reserved
+    </div>
+  </footer>
+
+  <!--
+
+    JAVASCRIPT
+    Handles GitHub API fetching, caching, and DOM rendering
+
+  -->
+  <script src="main.js" type="text/javascript" charset="utf-8"></script>
+
+</body>
+</html>

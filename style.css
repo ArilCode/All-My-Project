@@ -1,0 +1,346 @@
+/*
+
+  GLOBAL DESIGN TOKENS & VARIABLES
+  Centralized color palette, gradients, and theme values
+
+*/
+:root {
+  --bg: #0a0a0f; /* Main background color */
+  --card: rgba(17, 24, 39, 0.6); /* Card background with transparency for glassmorphism effect */
+  --text: #f1f5f9; /* Primary text color */
+  --muted: #94a3b8; /* Secondary/muted text color */
+  --accent: #3b82f6; /* Primary brand accent color - Blue */
+  --accent-2: #8b5cf6; /* Secondary brand accent color - Purple */
+  --btn: linear-gradient(90deg, #3b82f6, #8b5cf6); /* Primary button gradient */
+  --btn-hover: linear-gradient(90deg, #2563eb, #7c3aed); /* Button hover state gradient */
+  --border: rgba(148, 163, 184, 0.1); /* Subtle border color for cards and sections */
+}
+
+/*
+
+  CSS RESET & BASE STYLES
+  Sets consistent box model and removes default spacing
+
+*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+
+  BODY & BACKGROUND
+  Applies global font, colors, and decorative background gradients
+
+*/
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 0;
+  /* Decorative radial gradients for depth and brand identity */
+  background-image: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+}
+
+/*
+
+  LAYOUT CONTAINER
+  Constrains content width and centers it on the page
+
+*/
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/*
+
+  NAVIGATION BAR
+  Top header section with site branding
+
+*/
+.nav {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  /* Gradient text effect for branding */
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/*
+
+  PAGE HEADER SECTION
+  Main title and subtitle area
+
+*/
+.header {
+  text-align: center;
+  padding: 5rem 0 3rem;
+}
+
+.header h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.header p {
+  color: var(--muted);
+  font-size: 1.125rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/*
+
+  UI STATES: LOADER & EMPTY
+  Feedback messages for data fetching states
+
+*/
+.loader {
+  text-align: center;
+  color: var(--muted);
+  padding: 5rem;
+  font-weight: 500;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 5rem;
+}
+
+/*
+
+  PROJECT GRID LAYOUT
+  Responsive grid for displaying project cards
+
+*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+  padding-bottom: 5rem;
+}
+
+/*
+
+  PROJECT CARD COMPONENT
+  Glassmorphism card with hover animations and gradient accent bar
+
+*/
+.card {
+  background: var(--card);
+  padding: 1.75rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px); /* Glassmorphism blur effect */
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated top border that appears on hover */
+.card::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--btn);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Card hover state with lift effect and shadow */
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* Card header section containing badge */
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Status badge indicating project is live */
+.badge {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--accent);
+  font-size: 0.7rem;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Project title */
+.card h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* Project description text */
+.card p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+  flex-grow: 1; /* Pushes button to bottom of card */
+  line-height: 1.6;
+}
+
+/*
+
+  METADATA SECTION
+  Displays project dates: Updated and Released
+
+*/
+.dates {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.date-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.date-item b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/*
+
+  CALL TO ACTION BUTTON
+  Primary button linking to Vercel deployment
+
+*/
+.btn-vercel {
+  display: block;
+  width: 100%;
+  background: var(--btn);
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
+
+/* Button hover state with lift and glow effect */
+.btn-vercel:hover {
+  background: var(--btn-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+/*
+
+  TOAST NOTIFICATION
+  Displays temporary feedback messages to the user
+
+*/
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fff;
+  z-index: 9999;
+  backdrop-filter: blur(10px);
+  animation: slideIn 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.toast-error {
+  background: rgba(239, 68, 68, 0.9); /* Red for errors */
+  border: 1px solid rgba(239, 68, 68, 0.5);
+}
+
+.toast-info {
+  background: rgba(59, 130, 246, 0.9); /* Blue for info */
+  border: 1px solid rgba(59, 130, 246, 0.5);
+}
+
+.toast-hide {
+  animation: slideOut 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+/*
+
+  FOOTER SECTION
+  Site footer with copyright information
+
+*/
+footer {
+  text-align: center;
+  padding: 3rem 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+  border-top: 1px solid var(--border);
+}
+
+/*
+
+  RESPONSIVE DESIGN
+  Mobile-first adjustments for smaller screens
+
+*/
+@media (max-width: 768px) {
+ .header h2 {
+    font-size: 2rem;
+  }
+
+ .container {
+    padding: 0 1rem;
+  }
+}

@@ -52,16 +52,3 @@ Klik kanan index.html > Open with Live Server
 
 ---
 Made with ❤️ and Vercel
-
----
-
-🔒 Menyembunyikan Repo (EXCLUDE_REPOS)
-
-Daftar repo yang disembunyikan disimpan di Environment Variable Vercel, bukan di file JS, jadi tidak terlihat saat inspect.
-
-1. Buka Vercel > project > Settings > Environment Variables
-2. Tambah `EXCLUDE_REPOS` dengan isi nama repo dipisah koma, contoh: `repo-a,repo-b`
-3. (Opsional) tambah `GITHUB_USERNAME` dan `GITHUB_TOKEN`
-4. Klik Redeploy
-
-Catatan: `.env` hanya terbaca lewat `vercel dev`, tidak lewat Live Server.

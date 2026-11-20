@@ -9,7 +9,7 @@ const GITHUB_USERNAME = "ArilCode";
 const CACHE_KEY = `vercel_projects_${GITHUB_USERNAME}`;
 const CACHE_TIME_KEY = `vercel_projects_time_${GITHUB_USERNAME}`;
 const CACHE_DURATION = 1000 * 60 * 60; // 1 hour in milliseconds
-const EXCLUDE_REPOS = ["repo-yang-tidak-mau-ditampilkan"]; // Repositories to exclude from display
+// Daftar repo yang disembunyikan ada di Environment Variable (EXCLUDE_REPOS) di server Vercel.
 
 /*
 
@@ -141,7 +141,7 @@ function renderRepos(vercelRepos) {
  */
 async function fetchAndCache() {
   try {
-    const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`);
+    const res = await fetch('/api/repos');
     
     if (res.status === 403) {
       showToast('GitHub API Rate Limit Exceeded. Displaying cached data.', 'error');
@@ -152,7 +152,6 @@ async function fetchAndCache() {
     const repos = await res.json();
     
     let vercelRepos = repos
-      .filter(repo => !EXCLUDE_REPOS.includes(repo.name))
       .map(repo => ({ ...repo, vercelUrl: getVercelUrl(repo) }))
       .filter(repo => repo.vercelUrl !== null);
     

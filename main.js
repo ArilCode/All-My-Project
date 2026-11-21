@@ -9,7 +9,7 @@ const GITHUB_USERNAME = "ArilCode";
 const CACHE_KEY = `vercel_projects_${GITHUB_USERNAME}`;
 const CACHE_TIME_KEY = `vercel_projects_time_${GITHUB_USERNAME}`;
 const CACHE_DURATION = 1000 * 60 * 60; // 1 hour in milliseconds
-const EXCLUDE_REPOS = ["Ph"]; // Repositories to exclude from display
+const EXCLUDE_REPOS = ["Ph"]; // Repositories to exclude from display 
 
 /*
 

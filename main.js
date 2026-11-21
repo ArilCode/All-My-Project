@@ -9,7 +9,11 @@ const GITHUB_USERNAME = "ArilCode";
 const CACHE_KEY = `vercel_projects_${GITHUB_USERNAME}`;
 const CACHE_TIME_KEY = `vercel_projects_time_${GITHUB_USERNAME}`;
 const CACHE_DURATION = 1000 * 60 * 60; // 1 hour in milliseconds
-const EXCLUDE_REPOS = ["Ph"]; // Repositories to exclude from display 
+// Isi nama repo yang ingin DISEMBUNYIKAN (huruf besar/kecil tidak masalah).
+// Contoh: ["Ph", "Project-Rahasia", "Tes-Coba"]
+const EXCLUDE_REPOS = ["Ph", "TestingV.0"];
+const EXCLUDE_LOWER = EXCLUDE_REPOS.map(n => n.trim().toLowerCase());
+const isHidden = repo => EXCLUDE_LOWER.includes(repo.name.toLowerCase());
 
 /*
 
@@ -89,6 +93,9 @@ function renderRepos(vercelRepos) {
   const loader = document.getElementById('loader');
   const empty = document.getElementById('empty');
   
+  // Filter lagi di sini supaya data cache lama juga ikut tersembunyi
+  vercelRepos = vercelRepos.filter(repo => !isHidden(repo));
+  
   loader.style.display = 'none';
   grid.innerHTML = '';
   
@@ -152,7 +159,7 @@ async function fetchAndCache() {
     const repos = await res.json();
     
     let vercelRepos = repos
-      .filter(repo => !EXCLUDE_REPOS.includes(repo.name))
+      .filter(repo => !isHidden(repo))
       .map(repo => ({ ...repo, vercelUrl: getVercelUrl(repo) }))
       .filter(repo => repo.vercelUrl !== null);
     
